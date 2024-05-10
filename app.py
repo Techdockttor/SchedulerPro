@@ -1,7 +1,7 @@
 from flask import Flask, render_template, request, redirect, url_for, flash
 import os
 import sqlite3
-from flask_frozen import Freezer  # Import Freezer for static site generation
+from flask_frozen import Freezer
 
 app = Flask(__name__)
 app.config['SECRET_KEY'] = 'pestoTask'
