@@ -1,11 +1,14 @@
 from flask import Flask, render_template, request, redirect, url_for, flash
 import os
 import sqlite3
+from flask_frozen import Freezer  # Import Freezer for static site generation
 
 app = Flask(__name__)
 app.config['SECRET_KEY'] = 'pestoTask'
 
 DB_PATH = 'tasks.db'
+
+freezer = Freezer(app)  # Initialize Freezer
 
 
 def create_table():
@@ -15,6 +18,7 @@ def create_table():
                  (id INTEGER PRIMARY KEY, title TEXT, description TEXT, start_date DATE, end_date DATE, status TEXT)''')
     conn.commit()
     conn.close()
+
 
 def add_task(title, description, start_date, end_date, status):
     conn = sqlite3.connect(DB_PATH)
@@ -125,4 +129,4 @@ def delete_task_view(task_id):
 
 
 if __name__ == '__main__':
-    app.run(debug=True)
+    freezer.freeze()  # Generate static files when running the script
