@@ -89,8 +89,6 @@ def filter_tasks():
             return redirect(url_for('index'))
         return render_template('index.html', tasks=get_tasks(status), statuses=get_task_statuses(), edit_task=None)
     else:
-        # Handle GET request
-        # You can render the template or redirect as needed
         return redirect(url_for('index'))
 
 
@@ -132,4 +130,4 @@ def delete_task_view(task_id):
 
 
 if __name__ == '__main__':
-    app.run(debug=True)
+    app.run(debug=True, host='0.0.0.0', port=8000)
