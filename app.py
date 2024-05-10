@@ -1,14 +1,11 @@
 from flask import Flask, render_template, request, redirect, url_for, flash
 import os
 import sqlite3
-from flask_frozen import Freezer  # Import Freezer for static site generation
 
 app = Flask(__name__)
 app.config['SECRET_KEY'] = 'pestoTask'
 
 DB_PATH = 'tasks.db'
-
-freezer = Freezer(app)  # Initialize Freezer
 
 
 def create_table():
@@ -83,12 +80,17 @@ def index():
     return render_template('index.html', tasks=get_tasks(), statuses=get_task_statuses(), edit_task=None)
 
 
-@app.route('/filter', methods=['POST'])
+@app.route('/filter', methods=['GET', 'POST'])
 def filter_tasks():
-    status = request.form['status']
-    if status == 'All':
+    if request.method == 'POST':
+        status = request.form['status']
+        if status == 'All':
+            return redirect(url_for('index'))
+        return render_template('index.html', tasks=get_tasks(status), statuses=get_task_statuses(), edit_task=None)
+    else:
+        # Handle GET request
+        # You can render the template or redirect as needed
         return redirect(url_for('index'))
-    return render_template('index.html', tasks=get_tasks(status), statuses=get_task_statuses(), edit_task=None)
 
 
 @app.route('/add_task', methods=['POST'])
@@ -129,4 +131,4 @@ def delete_task_view(task_id):
 
 
 if __name__ == '__main__':
-    freezer.freeze()  # Generate static files when running the script
+    app.run(debug=True)
