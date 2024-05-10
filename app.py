@@ -1,7 +1,6 @@
 from flask import Flask, render_template, request, redirect, url_for, flash
 import os
 import sqlite3
-from flask_frozen import Freezer
 
 app = Flask(__name__)
 app.config['SECRET_KEY'] = 'pestoTask'
@@ -85,7 +84,7 @@ def index():
 def filter_tasks():
     if request.method == 'POST':
         status = request.form['status']
-        if status == 'All':
+        if status == 'Aill':
             return redirect(url_for('index'))
         return render_template('index.html', tasks=get_tasks(status), statuses=get_task_statuses(), edit_task=None)
     else:
@@ -130,4 +129,4 @@ def delete_task_view(task_id):
 
 
 if __name__ == '__main__':
-    app.run(debug=True, host='0.0.0.0', port=8000)
+    app.run(debug=True)
