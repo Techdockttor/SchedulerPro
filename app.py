@@ -2,7 +2,7 @@ from flask import Flask, render_template, request, redirect, url_for, flash
 import os
 import sqlite3
 
-app = Flask(__name__)
+app = Flask(__name__,template_folder='build')
 app.config['SECRET_KEY'] = 'pestoTask'
 
 DB_PATH = 'tasks.db'
@@ -73,60 +73,19 @@ def delete_task(task_id):
     conn.close()
 
 
-@app.route('/')
-def index():
-    if not os.path.exists(DB_PATH):
-        create_table()
-    return render_template('index.html', tasks=get_tasks(), statuses=get_task_statuses(), edit_task=None)
+host = os.getenv("SCHEDULER_HOST", "127.0.0.1")
+port = os.getenv("SCHEDULER_PORT", 5000)
+debug = os.getenv("SCHEDULER_DEBUG", "True").lower() == "true"
 
+try:
+    port = int(port)
+except ValueError:
+    print("Error: Unable to parse SCHEDULER_PORT environment variable")
 
-@app.route('/filter', methods=['GET', 'POST'])
-def filter_tasks():
-    if request.method == 'POST':
-        status = request.form['status']
-        if status == 'Aill':
-            return redirect(url_for('index'))
-        return render_template('index.html', tasks=get_tasks(status), statuses=get_task_statuses(), edit_task=None)
-    else:
-        return redirect(url_for('index'))
-
-
-@app.route('/add_task', methods=['POST'])
-def add():
-    title = request.form['title']
-    description = request.form['description']
-    start_date = request.form['start_date']
-    end_date = request.form['end_date']
-    status = request.form['status']
-    add_task(title, description, start_date, end_date, status)
-    flash('Task added successfully', 'success')
-    return redirect(url_for('index'))
-
-
-@app.route('/edit_task_form/<int:task_id>', methods=['POST'])
-def edit_task_form(task_id):
-    task = get_task_by_id(task_id)
-    return render_template('index.html', tasks=get_tasks(), statuses=get_task_statuses(), edit_task=task)
-
-
-@app.route('/edit_task/<int:task_id>', methods=['POST'])
-def edit_task(task_id):
-    title = request.form['title']
-    description = request.form['description']
-    start_date = request.form['start_date']
-    end_date = request.form['end_date']
-    status = request.form['status']
-    update_task(task_id, title, description, start_date, end_date, status)
-    flash('Task updated successfully', 'success')
-    return redirect(url_for('index'))
-
-
-@app.route('/delete_task/<int:task_id>', methods=['POST'])
-def delete_task_view(task_id):
-    delete_task(task_id)
-    flash('Task deleted successfully', 'success')
-    return redirect(url_for('index'))
-
+try:
+    debug = bool(debug)
+except ValueError:
+    print("Error: Unable to parse SCHEDULER_DEBUG environment variable")
 
 if __name__ == '__main__':
-    app.run(host='0.0.0.0', port=5000, debug=True)
+    app.run(host=host, port=port, debug=debug)
