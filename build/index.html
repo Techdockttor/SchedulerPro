@@ -1,9 +1,14 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>SchedulerPro</title>
+    <!--Link to Customised Fonts-->
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,300;0,400;0,500;0,600;0,700;1,500&display=swap" />
+	<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@600&display=swap" />
+	<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Podkova:wght@400&display=swap" />
     <!-- Link to Materialize CSS -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
     <!-- Link to custom styles -->
@@ -15,20 +20,22 @@
         }
     </style>
 </head>
-<body>
+<body style="background-color:#3e6a7ec5;">
     <div class="container">
         <div class="row">
-            <div class="col s12">
-                <h1 class="center-align">Lets Get You Scheduled!</h1>
-            </div>
+           <div>
+                <img src="/static/images/Logo-T.png" alt="Example Image" style="width:100px;height:60px;left:170.355px;border-radius:2px;"/>
+           </div>
+            <h1 class="center-align" style="font-family:Arial, Helvetica, sans-serif; color: #020902;">Get Scheduled!</h1>
         </div>
         <div class="row">
             <div class="col s12 m6">
                 <div class="card card-filter-tasks">
                     <div class="card-content">
-                        <span class="card-title">Filter Tasks</span>
+                        <span class="card-title" style="font-family:Arial, Helvetica, sans-serif;">Filter Tasks</span>
                         <form action="/filter" method="post">
                             <div class="input-field">
+                                <br></br>
                                 <select id="filter_status" name="status">
                                     <option value="All">Select (All-default) </option>
                                     <option value="Pending">Pending</option>
@@ -41,8 +48,8 @@
                         </form>
 						<!-- Task Management Application Information -->
 						<div class="card card-task-info">
-							<div class="card-content">
-								<span class="card-title">Application Info</span>
+							<div class="card-content" style="background-color: #4caf4f18;">
+								<span class="card-title" style="font-family:Arial, Helvetica, sans-serif;">About Us</span>
 								<p>
 									SchedulerPro is an Application that automate repetitive tasks, streamline processes, and reduce manual effort. Project Inspiration comes from improving efficiency and ensuring timely execution of critical tasks. Project was done by <a href="https://https://github.com/Techdockttor/" target="_blank">Diogu NkeJesus</a>, 
 									<a href="https://https://github.com/Melusi2022/" target="_blank"> Lindani Melusi Khumalo.</a> We made the Magic, We created a comprehensive application having functionality, quality, user experience & more.
@@ -55,7 +62,7 @@
             <div class="col s12 m6">
                 <div class="card card-add-update-task">
                     <div class="card-content">
-                        <span class="card-title">Add or Update Task</span>
+                        <span class="card-title" style="font-family:Arial, Helvetica, sans-serif;">Add or Update Task</span>
                         <form action="/add_task" method="post">
                             <div class="input-field">
                                 <input type="text" id="title" name="title" value="" required>
@@ -104,7 +111,7 @@
                                     <th>Action</th>
                                 </tr>
                             </thead>
-                            <tbody>
+                            <tbody style="background-color: #4caf4f18;">
                                 
                                     <tr>
                                         <td>Start</td>
