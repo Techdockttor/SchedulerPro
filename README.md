@@ -5,7 +5,7 @@ Welcome to SchedulerPro, a simple yet powerful web application built with Flask 
 ### 🌟 Look at overview of web
 <p align="center"> 
   <kbd>
-    <a href="https://github.com/Techdockttor/SchedulerPro.git" target="_blank"><img src="/static/sample.gif" alt="Portfolio Preview">
+    <a href="https://github.com/Techdockttor/SchedulerPro.git" target="_blank"><img src="/static/images/Sample_Page.jpeg" alt="Portfolio Preview">
   </a>
   </kbd>
 </p>
