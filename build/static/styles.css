@@ -1,11 +1,16 @@
 /* Global styles */
+:root {
+    --default-font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
+      Ubuntu, "Helvetica Neue", Helvetica, Arial, "PingFang SC",
+      "Hiragino Sans GB", "Microsoft Yahei UI", "Microsoft Yahei",
+      "Source Han Sans CN", sans-serif;
+}
 body {
     font-family: Arial, sans-serif;
-    background-color: #f4f4f4;
+    background-color: #3a708f;
     margin: 0;
     padding: 0;
 }
-
 .container {
     max-width: 800px;
     margin: 20px auto;
@@ -15,13 +20,13 @@ body {
 /* Header styles */
 h1.center-align {
     color: #333;
-    font-size: 36px;
+    font-size: 10px;
     margin-bottom: 20px;
     text-transform: uppercase;
     padding: 10px 0;
     position: relative;
+    right:170.355px;
 }
-
 h1.center-align::before,
 h1.center-align::after {
     content: '';
