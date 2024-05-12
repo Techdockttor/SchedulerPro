@@ -18,17 +18,16 @@ body {
 }
 
 /* Header styles */
-h1.center-align {
+h2.center-align {
     color: #333;
     font-size: 10px;
     margin-bottom: 20px;
-    text-transform: uppercase;
     padding: 10px 0;
     position: relative;
     right:170.355px;
 }
-h1.center-align::before,
-h1.center-align::after {
+h2.center-align::before,
+h2.center-align::after {
     content: '';
     position: absolute;
     left: 0;
@@ -37,11 +36,11 @@ h1.center-align::after {
     background-color: #333;
 }
 
-h1.center-align::before {
+h2.center-align::before {
     top: 0;
 }
 
-h1.center-align::after {
+h2.center-align::after {
     bottom: 0;
 }
 
