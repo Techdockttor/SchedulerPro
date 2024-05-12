@@ -5,7 +5,7 @@ Welcome to SchedulerPro, a simple yet powerful web application built with Flask 
 ### 🌟 Look at overview of web
 <p align="center"> 
   <kbd>
-    <a href="https://github.com/Techdockttor/SchedulerPro.git" target="_blank"><img src="/build/static/images/Sample_Page.jpeg" alt="Portfolio Preview">
+    <a href="https://github.com/Techdockttor/SchedulerPro.git" target="_blank"><img src="/static/images/Sample_Page.jpeg" alt="Portfolio Preview">
   </a>
   </kbd>
 </p>
@@ -30,22 +30,25 @@ Welcome to SchedulerPro, a simple yet powerful web application built with Flask 
 1. Clone the repository:
    ```bash
    git clone https://github.com/Techdockttor/SchedulerPro.git
-2. Clone the repository:
-   ```bash
-   git clone https://github.com/Techdockttor/SchedulerPro.git
-
-3. Navigate to the project directory:
+   ```
+1. Navigate to the project directory:
    ```bash
    cd task-manager
-
-4. Install the required dependencies:
+   ```
+1. Install the required dependencies:
    ```bash
    pip install -r requirements.txt
+   ```
+   
+## Development
 
-5. Run the application:
+1. Run the application:
    ```bash
    python app.py
+   ```
+1. Open your web browser and visit `http://localhost:8080`
 
-6. Open your web browser and visit 
-   ```bash 
-   http://localhost:5000 to access the Task Manager app
+## Production
+
+1. Run the application with `sudo gunicorn -b 0.0.0.0:80 app:app`
+2. 
