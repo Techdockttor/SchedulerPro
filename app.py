@@ -41,7 +41,43 @@ def get_tasks(status=None):
     return tasks
 
 
-# Similar functions for update_task, get_task_by_id, get_task_statuses, delete_task
+def update_task(task_id, title, description, start_date, end_date, status):
+    """Update Task on Databse"""
+    conn = sqlite3.connect(DB_PATH)
+    c = conn.cursor()
+    c.execute("UPDATE tasks SET title=?, description=?, start_date=?, end_date=?, status=? WHERE id=?",
+              (title, description, start_date, end_date, status, task_id))
+    conn.commit()
+    conn.close()
+
+
+def get_task_by_id(task_id):
+    """Retrieve Task id from Database"""
+    conn = sqlite3.connect(DB_PATH)
+    c = conn.cursor()
+    c.execute("SELECT * FROM tasks WHERE id=?", (task_id,))
+    task = c.fetchone()
+    conn.close()
+    return task
+
+
+def get_task_statuses():
+    """Retrieve Task Status from Database"""
+    conn = sqlite3.connect(DB_PATH)
+    c = conn.cursor()
+    c.execute("SELECT DISTINCT status FROM tasks")
+    statuses = [row[0] for row in c.fetchall()]
+    conn.close()
+    return statuses
+
+
+def delete_task(task_id):
+    """delete task from database"""
+    conn = sqlite3.connect(DB_PATH)
+    c = conn.cursor()
+    c.execute("DELETE FROM tasks WHERE id=?", (task_id,))
+    conn.commit()
+    conn.close()
 
 
 @app.route('/')
@@ -77,7 +113,32 @@ def add():
     return redirect(url_for('index'))
 
 
-# Similar routes for editing and deleting tasks
+@app.route('/edit_task_form/<int:task_id>', methods=['POST'])
+def edit_task_form(task_id):
+    """Retrieve Task from Database"""
+    task = get_task_by_id(task_id)
+    return render_template('index.html', tasks=get_tasks(), statuses=get_task_statuses(), edit_task=task)
+
+
+@app.route('/edit_task/<int:task_id>', methods=['POST'])
+def edit_task(task_id):
+    """Update Task on Database"""
+    title = request.form['title']
+    description = request.form['description']
+    start_date = request.form['start_date']
+    end_date = request.form['end_date']
+    status = request.form['status']
+    update_task(task_id, title, description, start_date, end_date, status)
+    flash('Task updated successfully', 'success')
+    return redirect(url_for('index'))
+
+
+@app.route('/delete_task/<int:task_id>', methods=['POST'])
+def delete_task_view(task_id):
+    """Delete Task from Database"""
+    delete_task(task_id)
+    flash('Task deleted successfully', 'success')
+    return redirect(url_for('index'))
 
 if __name__ == '__main__':
     # Get host, port, and debug mode from environment variables or use defaults
