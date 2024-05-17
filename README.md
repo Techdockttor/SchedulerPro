@@ -23,7 +23,6 @@ Welcome to SchedulerPro, a simple yet powerful web application built with Flask 
 
 - **Flask**: A lightweight and flexible micro web framework for Python.
 - **SQLite**: A self-contained, serverless, zero-configuration, transactional SQL database engine.
-- **Jinja2**: A full-featured template engine for Python used for generating HTML dynamically.
 
 ## Installation
 
