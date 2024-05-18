@@ -33,7 +33,7 @@ Welcome to SchedulerPro, a simple yet powerful web application built with Flask 
    ```
 1. Navigate to the project directory:
    ```bash
-   cd task-manager
+   cd SchedulerPro
    ```
 1. Install the required dependencies:
    ```bash
